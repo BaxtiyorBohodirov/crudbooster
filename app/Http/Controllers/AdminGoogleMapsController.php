@@ -5,14 +5,12 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminProductsController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminGoogleMapsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
-			// $this->addSelectOption('Status','status',[1=>'Published',0=>"Not Published"]);
-
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "name_uz";
+			$this->title_field = "id";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -27,42 +25,23 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "products";
+			$this->table = "google_maps";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Name Uz","name"=>"name_uz"];
-			$this->col[] = ["label"=>"Title Uz","name"=>"title_uz"];
-			$this->col[] = ["label"=>"Catigory Id","name"=>"catigory_id","join"=>"catigories,name_uz"];
-			$this->col[] = ["label"=>"Order","name"=>"order"];
-			$this->col[] = ["label"=>"Status","name"=>"status","callback_php"=>'["Not Published","Published"][$row->status]'];
+			$this->col[] = ["label"=>"Id","name"=>"id"];
+			$this->col[] = ["label"=>"Google Map","name"=>"google_map"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Name Uz','name'=>'name_uz','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Name Ru','name'=>'name_ru','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Name En','name'=>'name_en','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Title Uz','name'=>'title_uz','type'=>'googlemaps','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Title Ru','name'=>'title_ru','type'=>'wysiwyg','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Title En','name'=>'title_en','type'=>'wysiwyg','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Catigory Id','name'=>'catigory_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'catigories,name_uz'];
-			$this->form[] = ['label'=>'Order','name'=>'order','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','dataenum'=>'1|Published;0|Not Published'];
+			$this->form[] = ['label'=>'Google Map','name'=>'google_map','type'=>'googlemaps','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Name Uz','name'=>'name_uz','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Name Ru','name'=>'name_ru','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Name En','name'=>'name_en','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Title Uz','name'=>'title_uz','type'=>'googlemaps','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Title Ru','name'=>'title_ru','type'=>'wysiwyg','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Title En','name'=>'title_en','type'=>'wysiwyg','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Catigory Id','name'=>'catigory_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'catigories,name_uz'];
-			//$this->form[] = ['label'=>'Order','name'=>'order','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','dataenum'=>'1|Published;0|Not Published'];
+			//$this->form[] = ["label"=>"Google Map","name"=>"google_map","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
 			# OLD END FORM
 
 			/* 
@@ -226,7 +205,8 @@
 	        
 	    }
 
-		/*
+
+	    /*
 	    | ---------------------------------------------------------------------- 
 	    | Hook for button selected
 	    | ---------------------------------------------------------------------- 
